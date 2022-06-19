@@ -3,7 +3,7 @@ import React from "react";
 import { Text } from "@blockstack/ui";
 import { useConnect } from "@stacks/connect-react";
 import { bufferCVFromString } from "@stacks/transactions";
-import { CONTRACT_ADDRESS, CONTRACT_NAME } from "../assets/constants";
+// import { CONTRACT_ADDRESS, CONTRACT_NAME } from "../assets/constants";
 
 export const PublicUrlRegistrar = ({ userSession }) => {
     const { doContractCall } = useConnect();

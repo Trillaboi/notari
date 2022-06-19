@@ -2,8 +2,8 @@
 ;; trait deployed by deployer address from ./settings/Devnet.toml
 (impl-trait 'ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM.nft-trait.nft-trait)
 
-;; define a new NFT. Make sure to replace notari_nft
-(define-non-fungible-token notari_nft uint)
+;; define a new NFT. Make sure to replace my-nft
+(define-non-fungible-token my-nft uint)
 
 ;; Store the last issues token ID
 (define-data-var last-id uint u0)
@@ -16,8 +16,8 @@
 (define-public (transfer (token-id uint) (sender principal) (recipient principal))
   (begin
      (asserts! (is-eq tx-sender sender) (err u403))
-     ;; Make sure to replace notari_nft
-     (nft-transfer? notari_nft token-id sender recipient)))
+     ;; Make sure to replace my-nft
+     (nft-transfer? my-nft token-id sender recipient)))
 
 (define-public (transfer-memo (token-id uint) (sender principal) (recipient principal) (memo (buff 34)))
   (begin 
@@ -27,8 +27,8 @@
 
 ;; SIP009: Get the owner of the specified token ID
 (define-read-only (get-owner (token-id uint))
-  ;; Make sure to replace notari_nft
-  (ok (nft-get-owner? notari_nft token-id)))
+  ;; Make sure to replace my-nft
+  (ok (nft-get-owner? my-nft token-id)))
 
 ;; SIP009: Get the last token ID
 (define-read-only (get-last-token-id)
@@ -42,5 +42,5 @@
 (define-private (mint (new-owner principal))
     (let ((next-id (+ u1 (var-get last-id))))
       (var-set last-id next-id)
-      ;; Make sure to replace notari_nft
-      (nft-mint? notari_nft next-id new-owner)))
+      ;; Make sure to replace my-nft
+      (nft-mint? my-nft next-id new-owner)))
