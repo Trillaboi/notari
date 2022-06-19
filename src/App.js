@@ -9,6 +9,7 @@ import { ConnectWallet } from "./components/ConnectWallet";
 function App() {
   const [balance, setBalance] = useState(0);
   const [user, setUser] = useState(false);
+  const [switchy, setSwitchy] = useState(true);
   const { doContractCall } = useConnect();
   const principal = "ST1PQHQKV0RJXZFY1DGX8MNSNYVE3VGZJSRTPGZGM"
   const getBalance = () => {axios.get(`http://localhost:3999/extended/v1/address/${principal}/balances`).then(response => {
@@ -31,21 +32,20 @@ function App() {
         onFinish: (data) => {
           if (data.txId) {
             console.log(data.txId)
-            setUser(false);
+            setSwitchy(false);
+              // <p>Hello world</p> 
             
           }
         }
     })
   }
 
-  useEffect(() => {
-    if (user) {
-      console.log(user);
-    }
-  }, [user])
+  // useEffect(() => {
+  //   setUser(false)
+  // }, [])
 
   const renderNotConnectedContainer = () => (
-    <ConnectWallet setUser={setUser}/>
+    <ConnectWallet setUser={setUser} setSwitchy={setSwitchy}/>
   )
 
   const renderConnectedContainer = () => (
@@ -61,7 +61,7 @@ function App() {
         <div className="relative flex flex-col items-center min-h-screen">
           {/* <button onClick={getBalance}>Get Balance</button> */}
           <img src="https://media.giphy.com/media/YSr5LJD2elcu6jHI9Z/giphy.gif" alt="open"/>
-          {user ? renderNotConnectedContainer() : renderConnectedContainer()}
+          {switchy && !user ? renderNotConnectedContainer() : renderConnectedContainer()}
         </div>
       </div>
     </div>
