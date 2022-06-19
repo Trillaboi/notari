@@ -17,7 +17,7 @@ root.render(
       },
       redirectTo:"/",
       onFinish: () => {
-        window.location.reload();
+        // window.location.reload();
       },
       userSession,
   }}

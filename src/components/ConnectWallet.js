@@ -2,14 +2,20 @@ import React from "react";
 import { useConnect } from "@stacks/connect-react";
 
 
-export function ConnectWallet() {
+export function ConnectWallet({setUser, setSwitchy}) {
     const connect = useConnect();
     return (
-      <button
-        onClick={() => connect.doAuth()}
-      >
-        Connect Wallet
-      </button>
+      <div className="button-container">
+        <button className ="claim-token-button cta-button"
+          onClick={() => {
+            connect.doAuth()
+              setUser(true); 
+          }
+        }
+        >
+          Connect Wallet
+        </button>
+      </div>
     );
   }
   
