@@ -31,6 +31,7 @@ function App() {
         onFinish: (data) => {
           if (data.txId) {
             console.log(data.txId)
+            setUser(false);
             
           }
         }
@@ -48,19 +49,21 @@ function App() {
   )
 
   const renderConnectedContainer = () => (
-    <div>
-     <button onClick={claim}>Claim</button>
+    <div className="button-container">
+     <button className ="claim-token-button cta-button" onClick={claim}>Claim</button>
     </div>
   )
 
   return (
     <>
     <div className="Background">
-    <div className="relative flex flex-col items-center min-h-screen">
-      {/* <button onClick={getBalance}>Get Balance</button> */}
-      {/* {balance} */}
-     {user ? renderNotConnectedContainer() : renderConnectedContainer()}
-    </div>
+      <div className="container">
+        <div className="relative flex flex-col items-center min-h-screen">
+          {/* <button onClick={getBalance}>Get Balance</button> */}
+          <img src="https://media.giphy.com/media/YSr5LJD2elcu6jHI9Z/giphy.gif" alt="open"/>
+          {user ? renderNotConnectedContainer() : renderConnectedContainer()}
+        </div>
+      </div>
     </div>
     </>
   );
